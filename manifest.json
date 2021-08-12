@@ -14,5 +14,5 @@
         "default_popup": "popup/popup.html"
     },
     "background": { "service_worker": "background.js" },
-    "permissions": ["contextMenus"]
+    "permissions": ["contextMenus", "search", "tabs"]
 }

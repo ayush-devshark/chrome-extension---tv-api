@@ -4,14 +4,10 @@ chrome.runtime.onInstalled.addListener(details => {
         id: 'com1',
         contexts: ['page', 'selection'],
     });
-    chrome.contextMenus.create({
-        title: 'TV API 1',
-        id: 'com2',
-        parentId: 'com1',
-        contexts: ['page', 'selection'],
-    });
     chrome.contextMenus.onClicked.addListener(e => {
-        console.log(e);
+        chrome.tabs.create({
+            url: `https://www.imdb.com/find?q=${e.selectionText}&ref_=nv_sr_sm`,
+        });
     });
 });
 
