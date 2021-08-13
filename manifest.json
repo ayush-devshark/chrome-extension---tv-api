@@ -14,7 +14,7 @@
         "default_popup": "popup/popup.html"
     },
     "background": { "service_worker": "background.js" },
-    "permissions": ["contextMenus", "search", "tabs", "storage"],
+    "permissions": ["contextMenus", "search", "tabs", "storage", "tts"],
     "content_scripts": [
         {
             "matches": ["https://www.google.com/"],
