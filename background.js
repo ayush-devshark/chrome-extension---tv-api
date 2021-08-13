@@ -11,4 +11,9 @@ chrome.runtime.onInstalled.addListener(details => {
     });
 });
 
+chrome.runtime.onMessage.addListener((msg, sender, sendRes) => {
+    console.log({ msg, sender });
+    sendRes('recieved msh on background');
+});
+
 console.log('background script running');
