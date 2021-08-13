@@ -1,19 +1,20 @@
 chrome.runtime.onInstalled.addListener(details => {
+    chrome.storage.local.set({ shows: [] });
     chrome.contextMenus.create({
-        title: 'TV API',
+        title: 'Search Tv Show',
         id: 'com1',
         contexts: ['page', 'selection'],
     });
     chrome.contextMenus.onClicked.addListener(e => {
-        chrome.tabs.create({
-            url: `https://www.imdb.com/find?q=${e.selectionText}&ref_=nv_sr_sm`,
-        });
+        fetch(`https://api.tvmaze.com/search/shows?q=${e.selectionText}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                chrome.storage.local.set({
+                    shows: data,
+                });
+            });
     });
-});
-
-chrome.runtime.onMessage.addListener((msg, sender, sendRes) => {
-    console.log({ msg, sender });
-    sendRes('recieved msh on background');
 });
 
 console.log('background script running');
